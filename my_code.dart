@@ -1,4 +1,4 @@
-mycodeimport 'dart:ui';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -6,9 +6,6 @@ void main() {
   runApp(const AthkarApp());
 }
 
-// ==========================================
-// مكون التوقيع الموحد (أسفل الشمال)
-// ==========================================
 Widget buildFooterWatermark() {
   return const SafeArea(
     child: Padding(
@@ -35,7 +32,6 @@ class AthkarApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
-        primarySwatch: Colors.teal,
         scaffoldBackgroundColor: const Color(0xFF111827),
       ),
       home: const SplashScreen(),
@@ -43,9 +39,6 @@ class AthkarApp extends StatelessWidget {
   }
 }
 
-// ==========================================
-// 1. شاشة البداية (Splash Screen)
-// ==========================================
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -91,7 +84,7 @@ class _SplashScreenState extends State<SplashScreen> {
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 15.0, sigmaY: 15.0),
                 child: Container(
-                  color: Colors.black.withValues(alpha: 0.55),
+                  color: Colors.black.withOpacity(0.55),
                 ),
               ),
             ),
@@ -105,9 +98,9 @@ class _SplashScreenState extends State<SplashScreen> {
                     Container(
                       padding: const EdgeInsets.all(28.0),
                       decoration: BoxDecoration(
-                        color: Colors.white.withValues(alpha: 0.12),
+                        color: Colors.white.withOpacity(0.12),
                         borderRadius: BorderRadius.circular(24.0),
-                        border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
+                        border: Border.all(color: Colors.white.withOpacity(0.2)),
                       ),
                       child: const Column(
                         mainAxisSize: MainAxisSize.min,
@@ -163,9 +156,6 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 }
 
-// ==========================================
-// 2. الشاشة الرئيسية (القائمة باختياراتها الـ 3)
-// ==========================================
 class MainHomeScreen extends StatelessWidget {
   const MainHomeScreen({super.key});
 
@@ -183,12 +173,12 @@ class MainHomeScreen extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: Colors.white.withValues(alpha: 0.12),
+          color: Colors.white.withOpacity(0.12),
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
+          border: Border.all(color: Colors.white.withOpacity(0.2)),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.2),
+              color: Colors.black.withOpacity(0.2),
               blurRadius: 10,
               offset: const Offset(0, 4),
             ),
@@ -199,9 +189,9 @@ class MainHomeScreen extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
-                color: color.withValues(alpha: 0.25),
+                color: color.withOpacity(0.25),
                 shape: BoxShape.circle,
-                border: Border.all(color: color.withValues(alpha: 0.5), width: 1.5),
+                border: Border.all(color: color.withOpacity(0.5), width: 1.5),
               ),
               child: Icon(icon, color: color, size: 32),
             ),
@@ -223,7 +213,7 @@ class MainHomeScreen extends StatelessWidget {
                     subtitle,
                     style: TextStyle(
                       fontSize: 13,
-                      color: Colors.white.withValues(alpha: 0.7),
+                      color: Colors.white.withOpacity(0.7),
                     ),
                   ),
                 ],
@@ -258,7 +248,7 @@ class MainHomeScreen extends StatelessWidget {
             ),
             BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 25.0, sigmaY: 25.0),
-              child: Container(color: Colors.black.withValues(alpha: 0.5)),
+              child: Container(color: Colors.black.withOpacity(0.5)),
             ),
             SafeArea(
               child: Padding(
@@ -339,9 +329,6 @@ class MainHomeScreen extends StatelessWidget {
   }
 }
 
-// ==========================================
-// 3. نموذج الأذكار للصباح والمساء
-// ==========================================
 class AthkarItem {
   final String text;
   final String? countText;
@@ -407,7 +394,7 @@ List<AthkarItem> getMorningAthkar() {
       reward: 'لم يضره شيء حتى يمسي.',
     ),
     AthkarItem(
-      text: 'رَضِيتُ بِاللَّهِ رَبًّا، وَبِالْإِسْلَامِ دِينًا، وَبِمُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ نَبِيًّا.',
+      text: 'رَضِيتُ بِاللَّهِ رَبًّا، وَبِالْإِسْلَامِ دِينًا، وَبِْمُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ نَبِيًّا.',
       countText: '3 مرات',
       maxCount: 3,
       reward: 'كان حقاً على الله أن يرضيه يوم القيامة.',
@@ -478,9 +465,6 @@ List<AthkarItem> getEveningAthkar() {
   ];
 }
 
-// ==========================================
-// 4. شاشة عرض الأذكار (الصباح / المساء)
-// ==========================================
 class AthkarDisplayScreen extends StatefulWidget {
   final String title;
   final List<AthkarItem> athkarList;
@@ -563,7 +547,7 @@ class _AthkarDisplayScreenState extends State<AthkarDisplayScreen> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(widget.title, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-          backgroundColor: widget.themeColor.withValues(alpha: 0.9),
+          backgroundColor: widget.themeColor.withOpacity(0.9),
           elevation: 0,
           leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white),
@@ -580,7 +564,7 @@ class _AthkarDisplayScreenState extends State<AthkarDisplayScreen> {
             ),
             BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 20.0, sigmaY: 20.0),
-              child: Container(color: Colors.black.withValues(alpha: 0.65)),
+              child: Container(color: Colors.black.withOpacity(0.65)),
             ),
             SafeArea(
               child: Padding(
@@ -601,10 +585,10 @@ class _AthkarDisplayScreenState extends State<AthkarDisplayScreen> {
                     const SizedBox(height: 20),
                     Expanded(
                       child: Card(
-                        color: Colors.white.withValues(alpha: 0.12),
+                        color: Colors.white.withOpacity(0.12),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(24),
-                          side: BorderSide(color: Colors.white.withValues(alpha: 0.2)),
+                          side: BorderSide(color: Colors.white.withOpacity(0.2)),
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(24.0),
@@ -656,7 +640,7 @@ class _AthkarDisplayScreenState extends State<AthkarDisplayScreen> {
                           color: widget.themeColor,
                           boxShadow: [
                             BoxShadow(
-                              color: widget.themeColor.withValues(alpha: 0.5),
+                              color: widget.themeColor.withOpacity(0.5),
                               blurRadius: 18,
                               spreadRadius: 2,
                             ),
@@ -698,9 +682,6 @@ class _AthkarDisplayScreenState extends State<AthkarDisplayScreen> {
   }
 }
 
-// ==========================================
-// 5. شاشة أذكار المسلم (المسبحة الإلكترونية)
-// ==========================================
 class TasbeehZikr {
   final String title;
   int count;
@@ -794,7 +775,7 @@ class _MuslimAthkarScreenState extends State<MuslimAthkarScreen> {
                             ),
                             selected: isSel,
                             selectedColor: const Color(0xFF10B981),
-                            backgroundColor: Colors.white.withValues(alpha: 0.1),
+                            backgroundColor: Colors.white.withOpacity(0.1),
                             onSelected: (val) {
                               if (val) setState(() => _selectedIndex = index);
                             },
@@ -828,7 +809,7 @@ class _MuslimAthkarScreenState extends State<MuslimAthkarScreen> {
                         ),
                         boxShadow: [
                           BoxShadow(
-                            color: const Color(0xFF10B981).withValues(alpha: 0.4),
+                            color: const Color(0xFF10B981).withOpacity(0.4),
                             blurRadius: 25,
                             spreadRadius: 3,
                           ),
@@ -873,7 +854,7 @@ class _MuslimAthkarScreenState extends State<MuslimAthkarScreen> {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                     decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha: 0.08),
+                      color: Colors.white.withOpacity(0.08),
                       borderRadius: BorderRadius.circular(16),
                     ),
                     child: Row(
